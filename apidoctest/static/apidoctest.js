@@ -224,11 +224,13 @@ APIDocTest.prototype.AJAX = function (data, id) {
                 document.getElementById(id+"-resphds").value = resphds;
                 document.getElementById(id+"-respbd").value = respbd;
                 // TODO: conclusion.
+                return true;
             }
             else {
                 // TODO: exceptions.
             }
         }
+        alert(xmlhttprequest.readyState + " " + xmlhttprequest.status);
     }
     xmlhttprequest.send(data.body);
 }

@@ -56,3 +56,8 @@ serv.run(debug=False, host="localhost", port=9527)
 ## Result
 Use browser(Google Chrome recommended), access `http://localhost:9527/apidoctest`(in examples above).
 ![](./result.gif "Google Chrome 72.0.3626.121 32bit")
+
+# ToDo
+- I18n(Chinese friendly now)
+- Parameters validation
+- Input/Output grouped by test cases
