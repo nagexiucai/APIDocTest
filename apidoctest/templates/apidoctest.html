@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="API Document Test">
+    <meta name="copyright" content="nagexiucai.com">
+    <title>APIDocTest</title>
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="data:image/ico;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAT/AQYG/wIICP8FDQ7/CBIU/wwWG/8SHiT/FiQs/xssNf8WJiz/ITM8/xwsNv8ZKDD/EiMt/wgWG/8BDA7/AQUE/wEGBv8FDAz/CRMW/wwWGv8QGyH/FiQs/x4uOf8qPUv/MERU/ys/TP8rPk3/JzxK/yI0Qv8RISr/BRMU/wAFBP8FDAz/CBIS/woTGP8TICf/GCUt/xopMv8eMDr/KT5N/y9FUv89U2T/PVhs/yc7Sf8dMUD/Gi46/wYVF/8BBgf/BAsL/wYQEf8QHSH/ER8k/xcmK/8dLjX/KD1J/yo9Sv8zSVr/QVpr/0RgeP9Qcov/NEte/x8zPv8PICb/AQQE/wUMDv8KExf/EB0g/xEeIf8fLzX/HS44/zFGUf8sPkr/QFls/zpPXv9La4T/RmV8/01tg/8wSVr/ESIm/wIEBf8ECgv/DBca/w4aHf8PGx7/IDA5/xssNP8fMTj/KTpG/0Faa/9JZn3/TnCL/1J0jv8tR1r/IztJ/xosNP8AAQH/BAkL/wYPE/8LFhr/Dx0g/x0tOP8cLDf/Fict/xwrN/82TF//Plx0/1Byjf9FZn//WXyN/0Fgcf8dMTj/AQMD/wMHCf8FDRD/ChUZ/w8cI/8RHiX/FCIn/xAeJP8YJy//JjxL/zxadP9DZYH/VnyW/12Gm/9EZ3f/Gi82/wABAf8CBQb/BQwP/wgRFv8LFx//EiAp/xIeKP8VIzD/FiUt/yI4Sv8vTGb/QWSB/1F4lP9KcIT/NVRi/xcqMP8BAQH/AgUG/wMMDv8GERX/BxIZ/wwXHv8XJDH/FiMw/xYkMv8iN0j/KERe/zxfe/9BZoH/P2J0/zpYaP8QIST/AAAA/wMHCP8ECg7/BhAV/wgRGP8OGiX/DBgh/xQjM/8PGiP/Giw8/yZBW/89X3r/RWmD/0pvg/8uTVn/EiIk/wABAf8AAgL/AwgK/wQOEf8GDxT/ChYg/xMhMP8WKD7/GStB/x84Tv8qRl7/RGeD/0Vnfv80VGb/LUdU/wkVFv8AAAD/AQIC/wIGBv8CCAv/Bg4T/wgRGv8HFB3/EB4s/xQoOP8lP1b/JT5V/zpXcv82VWz/Ollu/x4zPv8CCQn/AAEA/wAAAP8CBQb/AwgI/wQKDv8HEBr/BhEX/w4ZI/8XKDn/HzNH/y1EYP8tSF//KEFV/yI6Sv8NHCH/AAIC/wABAP8AAAD/AAAA/wIFBv8CCAv/AwsQ/wUMEv8HERr/FCAu/xgnOf8WJjn/JTpO/xQoNv8WKTT/BhMW/wABAf8BAQD/AAAA/wAAAP8BAQH/AQUG/wEFB/8BBQf/BAkO/wcNE/8LExz/Dxgj/woWH/8PHCX/CBMZ/wIJCv8AAQH/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==">
+    <link rel="stylesheet" type="text/css" href="static/apidoctest.css">
+    <script src="static/apidoctest.js"></script>
+    <script type="text/javascript">
+        var current = "sample";
+        var apidoctest = new APIDocTest();
+        var data = {{ data | safe }};
+        function make() {
+            var container = document.getElementById("container");
+            for (var i=0; i<data.length; i++) {
+                var unit = apidoctest.Unit(data[i]);
+                unit.style.display = "none";
+                container.appendChild(unit);
+            }
+            var items = document.getElementById("items");
+            for (var i=0; i<apidoctest.APIs.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = '<a ' + 'class="item"' + ' href="javascript:show(\'' + apidoctest.APIs[i] + '\');">' + apidoctest.APIs[i] + '</a>';
+                items.appendChild(li);
+            }
+            var versions = document.getElementById("versions");
+            versions.innerHTML = "<option value='all'>ALL</option>";
+            for (var version in apidoctest.DocVers) {
+                var option = document.createElement("option");
+                option.setAttribute("value", apidoctest.DocVers[version]);
+                option.innerHTML = version;
+                versions.appendChild(option);
+            }
+            versions.onchange = function (o) {
+                console.log(o.target.options[o.target.selectedIndex].value);
+            }
+        }
+        function show(o) {
+            document.getElementById(current).style.display = "none";
+            document.getElementById(o).style.display = "block";
+            current = o;
+        }
+    </script>
+</head>
+<body onload="make()">
+    <div id="navigation">
+      <div id="filter">
+          <select id="versions"></select>
+      </div>
+      <div class="domain">
+          <input id="domain" name="domain" placeholder="protocol://ip-or-domain:port/prefix"/>
+      </div>
+      <div id="content">
+          <p class="content" style="font-size:1.1em;border:0;padding:0;margin:0;">接口列表</p>
+          <ul id="items"></ul>
+      </div>
+    </div>
+    <div id="container">
+        <form id="sample" class="unit sample" method="any" action="javascript:apidoctest.Do('sample');">
+            <div class="thing"><label>接口名称</label><input name="name" type="text" disabled="true" value="Test"/></div>
+            <div class="thing"><label>接口版本</label><input name="version" type="text" disabled="true" value="1.0.0"/></div>
+            <div class="thing"><label>接口描述</label><input name="description" type="text" disabled="true" value=""/></div>
+            <div class="thing"><label>请求路径</label><input name="path" type="text" value="/"/></div>
+            <div calss="thing"><label>路径参数</label><input name="path-parameters" type="text" disabled="true" value=""/></div>
+            <div class="thing"><label>请求方法</label><input class="button" type="submit" value="GET" onclick="javascript:document.getElementById('sample').setAttribute('method', 'get');"/><input class="button" type="submit" value="POST" onclick="javascript:document.getElementById('sample').setAttribute('method', 'post');"/></div>
+            <div class="thing"><label>请求头</label><textarea name="request-headers"></textarea></div>
+            <div class="thing"><label>请求参数</label><textarea name="request-parameters"></textarea></div>
+            <div class="thing"><label>请求体</label><textarea name="request-body"></textarea></div>
+            <div class="thing">
+                <div class="thing"><label>期望响应头</label><textarea name="response-headers"></textarea></div>
+                <div class="thing"><label>实测响应头</label><textarea id="sample-resphds" disabled="true"></textarea></div>
+            </div>
+            <div class="thing">
+                <div class="thing"><label>期望响应体</label><textarea name="response-body"></textarea></div>
+                <div class="thing"><label>实测响应体</label><textarea id="sample-respbd" disabled="true"></textarea></div>
+            </div>
+            <div class="thing"><label>结论</label><textarea id="sample-conclusion" disabled="true"></textarea></div>
+        </form>
+    </div>
+</body>
+</html>

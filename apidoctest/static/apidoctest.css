@@ -1,0 +1,89 @@
+/* nagexiucai.com */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    font-size: 17px;
+}
+a {
+    text-decoration: none;
+}
+#container, form {
+    width: 80%;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+}
+form {
+    border: solid 1px black;
+}
+label, input, textarea {
+    display: inline-block;
+    width: 99%;
+    font-size: 1em;
+}
+textarea {
+    resize: vertical;
+}
+.button {
+    width: auto;
+    display: inline-block;
+}
+.item {
+    color: silver;
+}
+.item:hover {
+    color: white;
+}
+#navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: auto;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: white;
+}
+#filter, .domain {
+    display: inline-block;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+}
+#filter {
+    width: 15%;
+}
+.domain {
+    width: 30%;
+}
+#content {
+    display: block;
+    width: 100%;
+    height: 1.3em;
+    overflow: hidden;
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+#content:hover {
+    height: auto;
+    overflow-y: scroll;
+}
+ul, li, select {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1em;
+    width: 100%;
+}
+ul {
+    text-align: left;
+    padding-left: 30%;
+}
