@@ -23,7 +23,7 @@ def Fuck():
     return "fuck"
 
 @bapidoctest.route("/kiss")
-@APIDocTest("/kiss", ["GET"], name="kiss", description="good.")
+@APIDocTest("/kiss", ["GET"], name=u"亲", description="good.")
 def Kiss():
     '''
     @path-parameters::
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     import sys
     reload(sys)
     sys.setdefaultencoding("utf8")
-    from flask import Flask, request, render_template_string
+    from flask import Flask, request, render_template_string, json
     from apidoctest import APIDocTestTemplateString
     serv = Flask("APIDocTestDemo")
     @serv.route("/", methods=["GET", "POST"])
@@ -52,6 +52,6 @@ if __name__ == "__main__":
         return "hi"
     @serv.route("/apidoctest")
     def documents():
-        return render_template_string(APIDocTestTemplateString, data=APIDocTest.apidocs)
+        return render_template_string(APIDocTestTemplateString, data=json.dumps(APIDocTest.apidocs, encoding="utf-8"))
     serv.register_blueprint(bapidoctest, url_prefix="/what")
     serv.run(debug=False, host="localhost", port=9527)

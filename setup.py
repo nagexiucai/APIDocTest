@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="APIDocTest",
-    version="0.0.1",
+    version="0.0.2",
     author="bob-nx",
     author_email="me@nagexiucai.com",
     keywords=("pip", "apidoc", "test", "api", "document", "flask"),
@@ -18,7 +18,7 @@ setuptools.setup(
         "apidoctest": ["static/apidoctest.css", "static/apidoctest.js", "templates/apidoctest.html"],
     },
     data_files=[
-        (".", ["APIDocTestV0.0.1.gif"]),
+        (".", ["APIDocTestV0.0.2.gif"]),
         ("./examples", ["examples/with-flask.py"]),
     ],
     python_requires=">=2.6, <3",

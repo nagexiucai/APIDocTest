@@ -43,12 +43,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf8")
 
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string, json
 from apidoctest import APIDocTestTemplateString
 serv = Flask("APIDocTestDemo")
 @serv.route("/apidoctest")
 def documents():
-    return render_template_string(APIDocTestTemplateString, data=APIDocTest.apidocs)
+    return render_template_string(APIDocTestTemplateString, data=json.dumps(APIDocTest.apidocs, encoding="utf-8"))
 serv.register_blueprint(bapidoctest, url_prefix="/what")
 serv.run(debug=False, host="localhost", port=9527)
 ```
@@ -56,7 +56,7 @@ serv.run(debug=False, host="localhost", port=9527)
 ## Result
 Use browser(Google Chrome recommended), access `http://localhost:9527/apidoctest`(in examples above).
 
-![](APIDocTestV0.0.1.gif "Google Chrome 72.0.3626.121 32bit")
+![](APIDocTestV0.0.2.gif "Google Chrome 72.0.3626.121 32bit")
 
 # ToDo
 - I18n(Chinese friendly now)
