@@ -56,7 +56,7 @@ serv.run(debug=False, host="localhost", port=9527)
 ## Result
 Use browser(Google Chrome recommended), access `http://localhost:9527/apidoctest`(in examples above).
 
-![](APIDocTestV0.0.2.gif "Google Chrome 72.0.3626.121 32bit")
+![](APIDocTestV0.0.3.jpg "Google Chrome 72.0.3626.121 32bit")
 
 - 2xx: <font color='black'>black</font>
 - 3xx: <font color='orange'>orange</font>
