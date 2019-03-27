@@ -19,7 +19,7 @@ APIDocTest.prototype.Unit = function (unit) {
     this.DocVers[v] = unit.version;
     this.APIs.push(id);
     form.setAttribute("id", id);
-    form.setAttribute("action", "javascript:apidoctest.Do('" + id + "');");
+    form.setAttribute("action", "javascript:try{apidoctest.Do('" + id + "');}catch(e){alert(e);}");
     form.setAttribute("class", "unit".concat(" ", v))
 
     // one by one is better than traversal.
