@@ -58,7 +58,13 @@ Use browser(Google Chrome recommended), access `http://localhost:9527/apidoctest
 
 ![](APIDocTestV0.0.2.gif "Google Chrome 72.0.3626.121 32bit")
 
+- 2xx: <font color='black'>black</font>
+- 3xx: <font color='orange'>orange</font>
+- 4xx: <font color='blue'>blue</font>
+- 5xx: <font color='red'>red</font>
+
 # ToDo
 - I18n(Chinese friendly now)
 - Parameters validation
 - Input/Output grouped by test cases
+- Input/Output type adaption

@@ -218,19 +218,34 @@ APIDocTest.prototype.AJAX = function (data, id) {
     }
     xmlhttprequest.onreadystatechange = function () {
         if (xmlhttprequest.readyState == 4) {
-            if (xmlhttprequest.status == 200) {
-                var resphds = xmlhttprequest.getAllResponseHeaders();
-                var respbd = xmlhttprequest.responseText;
-                document.getElementById(id+"-resphds").value = resphds;
-                document.getElementById(id+"-respbd").value = respbd;
-                // TODO: conclusion.
-                return true;
+            var resphds = xmlhttprequest.getAllResponseHeaders();
+            var respbd = xmlhttprequest.responseText;
+            document.getElementById(id+"-resphds").value = resphds;
+            document.getElementById(id+"-respbd").value = respbd;
+            // TODO: conclusion.
+            // TODO: exceptions.
+            var color = "black";
+            var result = false;
+            if (300>xmlhttprequest.status && xmlhttprequest.status>=200) {
+                color = "green";
+                result = true;
             }
-            else {
-                // TODO: exceptions.
+            else if (400>xmlhttprequest.status && xmlhttprequest.status>=300) {
+                color = "orange";
             }
+            else if (500>xmlhttprequest.status && xmlhttprequest.status>=400) {
+                color = "blue";
+            }
+            else if (xmlhttprequest.status >= 500) {
+                color = "red";
+            }
+            document.getElementById(id+"-resphds").style.color = color;
+            document.getElementById(id+"-respbd").style.color = color;
+            return result;
         }
-        alert(xmlhttprequest.readyState + " " + xmlhttprequest.status);
+    }
+    xmlhttprequest.onerror = function () {
+        alert(xmlhttprequest.status + ":" + xmlhttprequest.responseText);
     }
     xmlhttprequest.send(data.body);
 }
