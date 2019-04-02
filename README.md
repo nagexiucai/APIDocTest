@@ -58,6 +58,8 @@ Use browser(Google Chrome recommended), access `http://localhost:9527/apidoctest
 
 ![](APIDocTestV0.0.3.jpg "Google Chrome 72.0.3626.121 32bit")
 
+![](apidoctest-in-pycharm-0.0.x.gif "PyCharm Pro 64bit 2016.3.3")
+
 - 2xx: <font color='black'>black</font>
 - 3xx: <font color='orange'>orange</font>
 - 4xx: <font color='blue'>blue</font>
